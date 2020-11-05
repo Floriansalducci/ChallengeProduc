@@ -35,15 +35,20 @@ class Product
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=ProductType::class, inversedBy="name")
-     */
-    private $productType;
-
-    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Url()
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=2555)
+     */
+    private $detail;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="Product_type")
+     */
+    private $type;
 
 
     public function getId(): ?int
@@ -109,6 +114,30 @@ class Product
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getDetail(): ?string
+    {
+        return $this->detail;
+    }
+
+    public function setDetail(string $detail): self
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
