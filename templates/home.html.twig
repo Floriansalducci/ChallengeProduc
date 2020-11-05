@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Bienvenue
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="jumbotron mt-3">
+            <h1 class="display-3">Bienvenue sur SoldProduct</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga ipsum laborum odit quis voluptas. Voluptate?
+            </p>
+            <hr class="my-4">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, deleniti.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('product_index') }}" role="button">Voir nos produits</a>
+            </p>
+        </div>
+
+{% endblock %}
