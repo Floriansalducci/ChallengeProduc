@@ -3,15 +3,15 @@
 {% block title %}Nos réduction{% endblock %}
 
 {% block body %}
-<h2 class="text-center">Nos régles de réduction</h2>
-    <br>
-    <div class="container">
-        <ul>
-            <li>Pour tout produits Hifi à plus de 100 euro vous avez 10% de réduction</li>
-            <li>Pour tout produits Electro à plus de 100 euro vous avez 25% de réduction</li>
-            <li>Pour tout produits Jeux vidéos à plus de 100 euro vous avez 20% de réduction</li>
-            <li>Pour tout produits SmartPhone à plus de 100 euro vous avez 5% de réduction</li>
-        </ul>
+    <div >
+        <h1 class="my-5">Nos régles des réduction ! </h1>
+        <div >
+            {% for discount in discounts %}
+                <dl>
+                    <li class="col-md-8">{{ discount.ruleExpression }}</li>
 
-</div>
+                </dl>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

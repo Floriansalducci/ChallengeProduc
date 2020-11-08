@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">Nouvelle régle de solde</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2 class="alert-heading">Informations de la régle </h2>
+                    <hr>
+                    {{ form_row(form.discount_percent) }}
+                    {{ form_row(form.rule_expression) }}
+                    <hr>
+                    <button class="submit btn btn-success">
+                        <i class="fas fa-check"></i>
+                        Ajouter la régle
+                    </button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
