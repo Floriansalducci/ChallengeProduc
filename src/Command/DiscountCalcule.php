@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Command\SoftCalcule;
+use App\Command\Engine;
 use App\Entity\Product;
 use App\Command\Language;
 use App\Repository\DiscountRepository;
@@ -21,10 +21,10 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class CalculateDiscountCommand extends Command
 {
-    protected static $defaultName = 'calculate-discount';
+    protected static $defaultName = 'app:calculate-discount';
 
     private $language;
-    private $SoftCalcule;
+    private $engine;
 
     private $manager;
     private $type;
@@ -35,7 +35,7 @@ class CalculateDiscountCommand extends Command
     public function __construct(TypeRepository $type,ProductRepository $product, DiscountRepository $discount, EntityManagerInterface $manager)
     {
         $this->language = new Language();
-        $this->SoftCalcule = new SoftCalcule($this->language);
+        $this->engine = new Engine($this->language);
 
         $this->manager = $manager;
         $this->type = $type;
@@ -48,7 +48,7 @@ class CalculateDiscountCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('command calculate the product\'s discounted price')
+            ->setDescription('command calculate category of product discounted price')
             //->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
             //->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
         ;
@@ -68,7 +68,7 @@ class CalculateDiscountCommand extends Command
 
         foreach ($discount as $discountRule) {
 
-            $engine->addDiscount($discountRule->getRuleExpression());
+            $engine->addDiscountRule($discountRule->getRuleExpression());
         }
 
         // Array to send every morning

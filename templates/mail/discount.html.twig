@@ -1,0 +1,31 @@
+{# templates/emails/registration.html.twig #}
+<div class="example-wrapper">
+    <h1>Resume task</h1>
+    {% if products %}
+        <p>Hello, the following products have been updated</p>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Base Price</th>
+                <th scope="col">Discounted Price</th>
+                <th scope="col">Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr class="table-active">
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price|number_format(2, '.', ',') }} €</td>
+                    <td>{{ product.discounted_price|number_format(2, '.', ',') }} €</td>
+                    <td>{{ product.type }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Hello, no products have been updated.</p>
+    {% endif %}
+</div>

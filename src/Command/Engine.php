@@ -5,7 +5,7 @@ namespace App\Command;
 use App\Entity\Product;
 use Symfony\Component\Validator\Constraints\Language;
 
-class SoftCalcule
+class Engine
 {
     private $language;
     private $discountRules = array();
