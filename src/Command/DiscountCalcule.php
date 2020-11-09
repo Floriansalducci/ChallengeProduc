@@ -71,11 +71,11 @@ class CalculateDiscountCommand extends Command
             $engine->addDiscountRule($discountRule->getRuleExpression());
         }
 
-        // Array to send every morning
+        // A Envoyé chaque matin
         $emailArray = [];
         foreach ($product as $types) {
 
-            $discountPrice = number_format($engine->calculatePrice($product), 2, '.', '');
+            $discountPrice = number_format($engine->calculateNewPrice($product), 2, '.', '');
 
             if ($product->getPrice() != $discountPrice && $types->getDiscountPrice() != $discountPrice) {
 
@@ -85,9 +85,10 @@ class CalculateDiscountCommand extends Command
 
                 array_push($emailArray, [
                     "id"=>$product->getId(),
+                    "image"=>$product->getImage(),
                     "name"=>$product->getName(),
                     "price"=>$product->getPrice(),
-                    "discounted_price"=>$product->getdiscountedPrice(),
+                    "discounted_price"=>$product->getDiscountPrice(),
                     "type"=>$product->getType(),
                 ]);
             }
@@ -99,7 +100,7 @@ class CalculateDiscountCommand extends Command
                 ->setFrom('florian.salduccid@gmail.com')
                 ->setTo('florian.salducci@gmail.com')
                 ->setBody(
-                    $this->renderView('emails/updateDiscount.html.twig', [
+                    $this->renderView('mail/discount.html.twig', [
                         'products' => $emailArray
                     ]),
                     'text/html'
@@ -108,7 +109,7 @@ class CalculateDiscountCommand extends Command
             $mailer->send($message);
         }
 
-        $io->success('Loop have been executed successfully, you can check the updated table!');
+        $io->success('nice');
 
         return 0;
     }

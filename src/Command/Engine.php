@@ -35,7 +35,7 @@ class Engine
      *
      * @return float price
      */
-    public function calculatePrice(Product $product)
+    public function calculateNewPrice(Product $product)
     {
         $price = $product->getPrice();
         foreach ($this->discountRules as $discountRule) {
